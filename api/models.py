@@ -1,5 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    customer_id = models.IntegerField(default=0, blank=False)
+    email = models.CharField(max_length=255, blank=False, unique=True)
+    phone = models.CharField(max_length=55)
+    auth = models.CharField(max_length=55, blank=False)
+    status = models.CharField(max_length=55, blank=False)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    class Meta:
+        db_table = 'user'
 
 class Customer(models.Model):
     id = models.AutoField(primary_key=True)
@@ -30,8 +42,3 @@ class Activity(models.Model):
     class Meta:
         db_table = 'activity'
 
-class Staff(AbstractUser):
-    customer_id = models.IntegerField(blank=False)
-
-    class Meta:
-        db_table = 'staff'
