@@ -9,7 +9,8 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'datas', views.GroupViewSet)
+router.register(r'datas', views.DataViewSet)
+router.register(r'activities', views.ActivityViewSet)
 # router.register(r'staffs', views.StaffViewSet)
 
 urlpatterns = [
@@ -18,4 +19,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/changePassword/', views.changePasswordFormView),
+    path('api/activitiesByDataID/<int:data_id>/', views.activityListByDataIDView)
 ]

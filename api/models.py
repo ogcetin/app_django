@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     customer_id = models.IntegerField(default=0, blank=False)
+    name = models.CharField(max_length=255, blank=False, default='Bilgi Vermedi')
     email = models.CharField(max_length=255, blank=False, unique=True)
     phone = models.CharField(max_length=55)
     auth = models.CharField(max_length=55, blank=False)
